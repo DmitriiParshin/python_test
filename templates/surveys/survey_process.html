@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block main %}
+    <p class="text-center text-bold">{{ question }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field }}
+        {% endfor %}
+        <button class="btn btn-primary btn-wide">Submit</button>
+    </form>
+{% endblock %}
