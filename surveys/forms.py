@@ -1,9 +1,13 @@
 from django import forms
 
-from surveys.models import Answer
+from surveys.models import Question
 
 
-class AnswerForm(forms.ModelForm):
+class QuestionForm(forms.ModelForm):
+
     class Meta:
-        model = Answer
-        fields = ("name",)
+        model = Question
+        fields = ("answers",)
+        widgets = {
+            'answers': forms.RadioSelect()
+        }

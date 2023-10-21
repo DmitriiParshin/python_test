@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from surveys.models import Survey, Category, Question, Answer
+from surveys.models import Survey, Category, Question, Answer, UserAnswer
 
 
 @admin.register(Survey)
@@ -15,9 +15,14 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('name', 'used', 'category')
+    list_display = ('name', 'correct_answer', 'category')
 
 
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'question', 'user')
+    list_display = ('name',)
+
+
+@admin.register(UserAnswer)
+class UserAnswerAdmin(admin.ModelAdmin):
+    list_display = ('user', 'question', 'answer', )

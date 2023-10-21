@@ -4,7 +4,7 @@
     </div>
     <div class="flex-none">
         <ul class="menu menu-horizontal px-1">
-            <li><a>TEST</a></li>
+            <li><a>{{ request.user }}</a></li>
 
             <li>
                 <details>
@@ -13,9 +13,9 @@
                     </summary>
                     <ul class="p-2 bg-base-100">
                         {% if request.user.is_authenticated %}
-                            <li><a href="{% url 'users:login' %}">Login</a></li>
-                        {% else %}
                             <li><a href="{% url 'users:logout' %}">Logout</a></li>
+                        {% else %}
+                            <li><a href="{% url 'users:login' %}">Login</a></li>
                         {% endif %}
                     </ul>
                 </details>

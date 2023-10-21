@@ -25,9 +25,9 @@ class Category(models.Model):
 
 class Question(models.Model):
     name = models.CharField(max_length=128)
-    category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, related_name="questions"
-    )
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    answers = models.ManyToManyField("Answer")
+    correct_answer = models.ForeignKey("Answer", on_delete=models.CASCADE, related_name="correct_answer")
     used = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -37,13 +37,17 @@ class Question(models.Model):
 
 class Answer(models.Model):
     name = models.CharField(max_length=128)
-    question = models.ForeignKey(
-        Question, on_delete=models.CASCADE, related_name="answers"
-    )
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="answers"
-    )
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+
+class UserAnswer(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user} -> {self.answer}"
