@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block main %}
+    <p class="text-center text-bold">{{ question }}</p>
+    <form method="post">
+        {% csrf_token %}
+
+        {% if form.errors %}
+            {{ errors }}
+        {% endif %}
+        {% for field in form %}
+            {% if field.errors %}
+                {{ errors }}
+            {% endif %}
+            {{ field }}
+        {% endfor %}
+        <button class="btn btn-primary btn-wide">Submit</button>
+    </form>
+{% endblock %}

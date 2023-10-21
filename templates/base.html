@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.3/dist/full.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body class="min-h-screen">
+        <header>
+            {% include 'includes/header.html' %}
+        </header>
+        <main>
+        {% block main %}{% endblock %}
+        </main>
+        <footer class="footer footer-center p-4 bg-base-300 text-base-content sticky top-[100vh]">
+            {% include 'includes/footer.html' %}
+        </footer>
+    </body>
+</html>
